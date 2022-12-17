@@ -20,13 +20,16 @@ choice = str(input())
 menuopen = 0
 
 while menuopen < 1:
-    if choice == "1":
+    if choice == "1": #View List
         menuopen = 1
         print(choice)
-    elif choice == "2":
+    elif choice == "2": #Create List
         menuopen = 1
+        import create
+        create.createlist()
+
         print(choice)    
-    elif choice == "3":
+    elif choice == "3": #Modify List
         menuopen = 1 
         print(choice)
     else:

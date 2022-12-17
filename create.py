@@ -1,10 +1,10 @@
 # Contains functions to create a list 
 
 def createlist():
-    print("You've chosen to CREATE a list.\nIf you would like to return to menu, enter 'menu' and input at any time.")
+    print("You've chosen to CREATE a list.\nIf you would like to return to menu, enter 'menu' input at any time.")
     listname = str(input("Enter the name of your list.")).lower() + ".txt"
 
-    loop = 0
+    loop = 0 #set to 1 to bypass this stage for testing
     while loop < 1:
 
         import os
@@ -24,13 +24,27 @@ def createlist():
                     listname = str(input("Enter the name of your list.")).lower() + ".txt"
                     owloop = 1
                     fcheck = ""
+                elif overwrite == "menu":
+                    import returnmenu as rm
+                    rm.returntomenu()
+                    return
                 else: 
-                    print("You have inputted your answer incorrectly. Please only use the letters y or n to indicate yes/no.")
-
+                    print("You have inputted your answer incorrectly. Please only use the letters 'y' or 'n' to indicate yes/no.")
+        elif listname == "menu.txt":
+            import returnmenu as rm
+            rm.returntomenu()
+            return
         else:
             print("False")
             f = open(os.path.relpath("lists/" + listname), 'w')
             loop = 1
+
+    typeoptions = ["To-Do", "Groceries", "Birthdays"]
+    print("What kind of list would you like to make?")
+    for index, i in enumerate(typeoptions):
+        print(str(index +1) + ". " + i)
+    listtype = str(input()) 
+        
 
 
 createlist()

@@ -52,41 +52,92 @@ def createlist():
             todolist()
 
         ########
-        if listtype == "2": #Groceries List
+        elif listtype == "2": #Groceries List
             createlist.lstypeloop = 1
-            print(listtype)
+            print("Creating Shopping List named '" + createlist.listname[:len(createlist.listname)-3].capitalize() + "'\n")
+            grocerylist()
 
         ########
-        if listtype == "3": #Birthdays List
+        elif listtype == "3": #Birthdays List
             createlist.lstypeloop = 1
-            print(listtype)
+            print("Creating Birthdays List named '" + createlist.listname[:len(createlist.listname)-3].capitalize() + "'\n")
+            birthdaylist()
+        else:
+            print("Please enter only numerical values (Such as 1, 2, or 3)")
+            listmenu()
+            listtype = str(input())
 
 def todolist():
-    print("todo")
     import os
     f = open(os.path.relpath("lists/" + createlist.listname), 'a')
-    f.write("\n")
-    listlen = input("How many items would you like to have on the list? (Numerical Value)")
+    listlen = input("How many tasks would you like to have on the list? (Numerical Value)")
     while listlen.isdigit() == 0:
         listlen = input("Please only use numerical values (such as 1, 2, 3) for the length.")
     listlen = int(listlen)
     for i in range(listlen):
         f.write("\n* " + input("What task would you like to add?") + "  ")
-    listlen = input("If you would like to add more items, please enter the number you would like to add.\nOtherwise, please input 'exit' to the cmd line.")
-    if listlen.isdigit() == 1:
-        listlen = int(listlen)
-        for i in range(listlen):
-            f.write("\n* " + input("What task would you like to add?") + "  ")
-    elif listlen.lower() == "exit":
-        createlist.lstypeloop = 1
-        f.close()
-        import userinterface as ui
-        ui.menuopen = 0
-        return
-    else:
-
-        
+    lsdone = 0
+    while lsdone <1:
+        listlen = input("If you would like to add more items, please enter the number you would like to add.\nOtherwise, please input 'exit' to the cmd line.")
+        if listlen.isdigit() == 1:
+            listlen = int(listlen)
+            for i in range(listlen):
+                f.write("\n* " + input("What task would you like to add?") + "  ")
+        elif listlen.lower() == "exit":
+            createlist.lstypeloop = 1
+            f.close()
+            import userinterface as ui
+            ui.menuopen = 0
+            return
+        else:
+            print("You have entered an invalid input. Please use only numerica values or 'exit'.")
+       
 def grocerylist():
-    print("shop")
+    import os
+    f = open(os.path.relpath("lists/" + createlist.listname), 'a')
+    listlen = input("How many items would you like to have on the list? (Numerical Value)")
+    while listlen.isdigit() == 0:
+        listlen = input("Please only use numerical values (such as 1, 2, 3) for the length.")
+    listlen = int(listlen)
+    for i in range(listlen):
+        f.write("\n* " + input("What item would you like to add?") + " -- $" + input("How much does this item cost?"))
+    lsdone = 0
+    while lsdone <1:
+        listlen = input("If you would like to add more items, please enter the number you would like to add.\nOtherwise, please input 'exit' to the cmd line.")
+        if listlen.isdigit() == 1:
+            listlen = int(listlen)
+            for i in range(listlen):
+                f.write("\n* " + input("What item would you like to add?") + " -- $" + input("How much does this item cost?"))
+        elif listlen.lower() == "exit":
+            createlist.lstypeloop = 1
+            f.close()
+            import userinterface as ui
+            ui.menuopen = 0
+            return
+        else:
+            print("You have entered an invalid input. Please use only numerica values or 'exit'.")
+    
 def birthdaylist():
-    print("bday")
+    import os
+    f = open(os.path.relpath("lists/" + createlist.listname), 'a')
+    listlen = input("How many birthdays would you like to have on the list? (Numerical Value)")
+    while listlen.isdigit() == 0:
+        listlen = input("Please only use numerical values (such as 1, 2, 3) for the length.")
+    listlen = int(listlen)
+    for i in range(listlen):
+        f.write("\n* " + input("Please enter the person's name") + " -- " + input("And what is their birth date?"))
+    lsdone = 0
+    while lsdone <1:
+        listlen = input("If you would like to add more birthdays, please enter the number you would like to add.\nOtherwise, please input 'exit' to the cmd line.")
+        if listlen.isdigit() == 1:
+            listlen = int(listlen)
+            for i in range(listlen):
+                f.write("\n* " + input("Please enter the person's name") + " -- " + input("And what is their birth date?"))
+        elif listlen.lower() == "exit":
+            createlist.lstypeloop = 1
+            f.close()
+            import userinterface as ui
+            ui.menuopen = 0
+            return
+        else:
+            print("You have entered an invalid input. Please use only numerica values or 'exit'.")   

@@ -1,4 +1,8 @@
 # Contains functions to create a list 
+def listmenu():
+    typeoptions = ["To-Do", "Groceries", "Birthdays"]
+    for index, i in enumerate(typeoptions):
+        print(str(index +1) + ". " + i)
 
 def createlist():
     print("You've chosen to CREATE a list.\nIf you would like to return to menu, enter 'menu' input at any time.")
@@ -24,27 +28,38 @@ def createlist():
                     listname = str(input("Enter the name of your list.")).lower() + ".txt"
                     owloop = 1
                     fcheck = ""
-                elif overwrite == "menu":
-                    import returnmenu as rm
-                    rm.returntomenu()
-                    return
                 else: 
                     print("You have inputted your answer incorrectly. Please only use the letters 'y' or 'n' to indicate yes/no.")
-        elif listname == "menu.txt":
-            import returnmenu as rm
-            rm.returntomenu()
-            return
         else:
             print("False")
             f = open(os.path.relpath("lists/" + listname), 'w')
             loop = 1
 
-    typeoptions = ["To-Do", "Groceries", "Birthdays"]
     print("What kind of list would you like to make?")
-    for index, i in enumerate(typeoptions):
-        print(str(index +1) + ". " + i)
-    listtype = str(input()) 
-        
+    listmenu()
+    listtype = str(input())
 
 
-createlist()
+    lstypeloop = 0
+    while lstypeloop < 1:
+        if listtype == "1": #To-Do List                     print(listname[:len(listname) - 4]) for name - txt capitalize()
+            lstypeloop = 1
+            print("Creating To-Do List named '" + listname[:len(listname)-4].capitalize() + "'\n")
+            f.write('#' + listname[:len(listname)-4].capitalize() + '\n')
+
+        ########
+        if listtype == "2": #Groceries List
+            lstypeloop = 1
+            print(listtype)
+
+        ########
+        if listtype == "3": #Birthdays List
+            lstypeloop = 1
+            print(listtype)
+
+def todolist():
+    print("todo")
+def grocerylist():
+    print("shop")
+def birthdaylist():
+    print("bday")

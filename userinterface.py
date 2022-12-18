@@ -26,9 +26,7 @@ while menuopen < 1:
     elif choice == "2": #Create List
         menuopen = 1
         import create
-        create.createlist()
-
-        print(choice)    
+        create.createlist()   
     elif choice == "3": #Modify List
         menuopen = 1 
         print(choice)

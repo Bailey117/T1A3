@@ -6,13 +6,13 @@ def listmenu():
 
 def createlist():
     print("You've chosen to CREATE a list.\nIf you would like to return to menu, enter 'menu' input at any time.")
-    listname = str(input("Enter the name of your list.")).lower() + ".txt"
+    createlist.listname = str(input("Enter the name of your list.")).lower() + ".md"
 
     loop = 0 #set to 1 to bypass this stage for testing
     while loop < 1:
 
         import os
-        path = os.path.relpath("lists/" + listname)   #this checks if a file in path lists already exists with the desired list name. If it does, it asks if user wants to overwrite.
+        path = os.path.relpath("lists/" + createlist.listname)   #this checks if a file in path lists already exists with the desired list name. If it does, it asks if user wants to overwrite.
         fcheck = os.path.exists(path)
 
         if(fcheck):
@@ -21,18 +21,22 @@ def createlist():
                 overwrite = input("A file with this name already exists. Do you wish to overwrite it? (y/n)\nNote: this CANNOT be UNDONE.").lower()
                 if overwrite == "y":
                     os.remove(path)
-                    f = open(os.path.relpath("lists/" + listname), 'w')
+                    f = open(os.path.relpath("lists/" + createlist.listname), 'w')
+                    f.write('# ' + createlist.listname[:len(createlist.listname)-3].capitalize() + '\n ')
+                    f.close()
                     owloop = 1
                     loop = 1
                 elif overwrite == "n":
-                    listname = str(input("Enter the name of your list.")).lower() + ".txt"
+                    createlist.listname = str(input("Enter the name of your list.")).lower() + ".md"
                     owloop = 1
                     fcheck = ""
                 else: 
                     print("You have inputted your answer incorrectly. Please only use the letters 'y' or 'n' to indicate yes/no.")
         else:
             print("False")
-            f = open(os.path.relpath("lists/" + listname), 'w')
+            f = open(os.path.relpath("lists/" + createlist.listname), 'w')
+            f.write('# ' + createlist.listname[:len(createlist.listname)-3].capitalize() + '\n ')
+            f.close()
             loop = 1
 
     print("What kind of list would you like to make?")
@@ -40,25 +44,48 @@ def createlist():
     listtype = str(input())
 
 
-    lstypeloop = 0
-    while lstypeloop < 1:
-        if listtype == "1": #To-Do List                     print(listname[:len(listname) - 4]) for name - txt capitalize()
-            lstypeloop = 1
-            print("Creating To-Do List named '" + listname[:len(listname)-4].capitalize() + "'\n")
-            f.write('#' + listname[:len(listname)-4].capitalize() + '\n')
+    createlist.lstypeloop = 0
+    while createlist.lstypeloop < 1:
+        if listtype == "1": #To-Do List                     print(createlist.listname[:len(createlist.listname) - 4]) for name - txt capitalize()
+            createlist.lstypeloop = 1
+            print("Creating To-Do List named '" + createlist.listname[:len(createlist.listname)-3].capitalize() + "'\n")
+            todolist()
 
         ########
         if listtype == "2": #Groceries List
-            lstypeloop = 1
+            createlist.lstypeloop = 1
             print(listtype)
 
         ########
         if listtype == "3": #Birthdays List
-            lstypeloop = 1
+            createlist.lstypeloop = 1
             print(listtype)
 
 def todolist():
     print("todo")
+    import os
+    f = open(os.path.relpath("lists/" + createlist.listname), 'a')
+    f.write("\n")
+    listlen = input("How many items would you like to have on the list? (Numerical Value)")
+    while listlen.isdigit() == 0:
+        listlen = input("Please only use numerical values (such as 1, 2, 3) for the length.")
+    listlen = int(listlen)
+    for i in range(listlen):
+        f.write("\n* " + input("What task would you like to add?") + "  ")
+    listlen = input("If you would like to add more items, please enter the number you would like to add.\nOtherwise, please input 'exit' to the cmd line.")
+    if listlen.isdigit() == 1:
+        listlen = int(listlen)
+        for i in range(listlen):
+            f.write("\n* " + input("What task would you like to add?") + "  ")
+    elif listlen.lower() == "exit":
+        createlist.lstypeloop = 1
+        f.close()
+        import userinterface as ui
+        ui.menuopen = 0
+        return
+    else:
+
+        
 def grocerylist():
     print("shop")
 def birthdaylist():

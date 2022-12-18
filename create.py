@@ -5,11 +5,11 @@ def listmenu():
         print(str(index +1) + ". " + i)
 
 def createlist():
-    print("You've chosen to CREATE a list.\nIf you would like to return to menu, enter 'menu' input at any time.")
+    print("You've chosen to CREATE a list.\n")
     createlist.listname = str(input("Enter the name of your list.")).lower() + ".md"
 
-    loop = 0 #set to 1 to bypass this stage for testing
-    while loop < 1:
+    createlist.loop = 0 #set to 1 to bypass this stage for testing
+    while createlist.loop < 1:
 
         import os
         path = os.path.relpath("lists/" + createlist.listname)   #this checks if a file in path lists already exists with the desired list name. If it does, it asks if user wants to overwrite.
@@ -85,6 +85,8 @@ def todolist():
                 f.write("\n* " + input("What task would you like to add?") + "  ")
         elif listlen.lower() == "exit":
             createlist.lstypeloop = 1
+            lsdone = 1
+            createlist.loop = 1
             f.close()
             import userinterface as ui
             ui.menuopen = 0

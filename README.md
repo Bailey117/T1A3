@@ -1,6 +1,7 @@
 # T1A3-Assignment
 
 [Github Repository](https://github.com/Bailey117/T1A3)
+[Presentation Video](https://youtu.be/b6Z_hWe0z5w)
 
 ## Code Style
 Throughout my coding, I did my best to adopt the "Zen of Python" coding style, avoiding repitition where possible and attempting to make the code as simple and explicit as possible. 
@@ -47,6 +48,6 @@ To write a list, go to the Create List section. Once there, you simply select a 
 
 
 
-#### Information Sources:
-Aspose
-Zen of Python https://github.com/python/peps/blob/main/pep-0020.txt
+## Information Sources:
+Aspose - https://pypi.org/project/aspose-words/
+Zen of Python  - https://github.com/python/peps/blob/main/pep-0020.txt

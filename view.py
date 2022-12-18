@@ -5,7 +5,7 @@ def chooselist():
     for path in os.listdir(dirpath):
         if os.path.isfile(os.path.join(dirpath, path)):
             chooselist.listdir.append(path[:len(path) - 3])
-    print("Please choose the number corresponding to the list you would like to modify.")
+    print("Please choose the number corresponding to the list you would like to view.")
     chooselist.dirlength = 1
     for index, i in enumerate(chooselist.listdir):
         print(str(index +1) + ". " + i.capitalize())
@@ -52,5 +52,7 @@ def openlist():
 def printlist():
     import aspose.words as aw
     doc = aw.Document("lists/" + chooselist.chosenpath)
-    doc.save("lists/" + chooselist.chosenpath + ".pdf")
+    doc.save("lists/" + chooselist.chosenpath[:len(chooselist.chosenpath)-3] + ".pdf")
+    print("You've saved the file as " + chooselist.chosenpath[:len(chooselist.chosenpath)-3] + ".pdf")
+
 

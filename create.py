@@ -24,8 +24,9 @@ def createlist():
                     f = open(os.path.relpath("lists/" + createlist.listname), 'w')
                     f.write('# ' + createlist.listname[:len(createlist.listname)-3].capitalize() + '\n ')
                     f.close()
-                    owloop = 1
+                    owloop = 2
                     loop = 1
+                    break
                 elif overwrite == "n":
                     createlist.listname = str(input("Enter the name of your list.")).lower() + ".md"
                     owloop = 1
@@ -33,11 +34,10 @@ def createlist():
                 else: 
                     print("You have inputted your answer incorrectly. Please only use the letters 'y' or 'n' to indicate yes/no.")
         else:
-            print("False")
             f = open(os.path.relpath("lists/" + createlist.listname), 'w')
             f.write('# ' + createlist.listname[:len(createlist.listname)-3].capitalize() + '\n ')
             f.close()
-            loop = 1
+            createlist.loop = 1
 
     print("What kind of list would you like to make?")
     listmenu()
